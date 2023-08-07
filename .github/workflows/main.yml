@@ -27,7 +27,7 @@ jobs:
 
     - name: Run Azure Deployment Script
       run: |
-        masterscript.ps1
+        .\masterscript.ps1
 
     - name: Logout Azure PowerShell
       run: |
