@@ -1,3 +1,6 @@
+# Import the Azure PowerShell module
+Import-Module -Name Az
+
 #Create Resource Group
 
 $resourceGroup="testrg2"
