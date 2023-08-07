@@ -20,11 +20,14 @@ jobs:
       with:
         creds: |
           ${{ secrets.AZURE_CREDENTIALS }}
-          
+
+    - name: Set Execution Policy
+      run: |
+        Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+
     - name: Run Azure Deployment Script
       run: |
-        # Run the masterscript.ps1 file located in the root of the repository
-        ./masterscript.ps1      
+        masterscript.ps1
 
     - name: Logout Azure PowerShell
       run: |
