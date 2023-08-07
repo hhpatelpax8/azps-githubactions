@@ -14,7 +14,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
+    - name: Install Azure PowerShell
+      run: |
+        Install-Module -Name Az -Force
+
     - name: Set up Azure PowerShell
       uses: azure/login@v1
       with:
