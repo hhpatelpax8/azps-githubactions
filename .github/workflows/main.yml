@@ -27,9 +27,6 @@ jobs:
 
     - name: Run Azure Deployment Script
       run: |
-        # Import the Azure PowerShell module
-        Import-Module -Name Az
-
         # Authenticate with Azure
         Connect-AzAccount
 
