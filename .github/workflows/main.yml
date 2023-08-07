@@ -19,6 +19,10 @@ jobs:
       run: |
         Install-Module -Name Az -Force -AllowClobber
 
+    - name: Uninstall AzureRM Module
+      run: |
+        Uninstall-Module -Name AzureRM -Force
+
 
     - name: Set up Azure PowerShell
       uses: azure/login@v1
@@ -32,6 +36,13 @@ jobs:
 
     - name: Run Azure Deployment Script
       run: |
+        # Import the Azure PowerShell module
+        Import-Module -Name Az
+
+        # Authenticate with Azure
+        Connect-AzAccount
+
+        # Run the masterscript.ps1 file
         .\masterscript.ps1
 
     - name: Logout Azure PowerShell
