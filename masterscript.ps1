@@ -1,6 +1,3 @@
-# Import the Azure PowerShell module
-Import-Module -Name "C:\Users\HarshPatel\OneDrive - PAX8\Documents\PowerShell\Modules\Az\10.1.0\Az.psd1"
-
 #Create Resource Group
 
 $resourceGroup="testrg2"
