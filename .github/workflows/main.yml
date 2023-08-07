@@ -1,0 +1,34 @@
+name: Azure PowerShell Deployment
+
+on:
+  push:
+    branches:
+      - main  
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Azure PowerShell
+      uses: azure/login@v1
+      with:
+        creds: |
+          ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set Execution Policy
+      run: |
+        Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+
+    - name: Run Azure Deployment Script
+      run: |
+        .\masterscript.ps1
+
+    - name: Logout Azure PowerShell
+      run: |
+        az logout
