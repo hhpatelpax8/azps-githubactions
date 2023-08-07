@@ -14,6 +14,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Check Azure PowerShell
+      run: |
+        # Check if the Azure PowerShell module is installed
+        if (-not (Get-Module -ListAvailable -Name Az)) {
+          # Install the Azure PowerShell module
+          Install-Module -Name Az -Force
+          # Import the Azure PowerShell module
+          Import-Module -Name Az
+        }
 
     - name: Set up Azure PowerShell
       uses: azure/login@v1
