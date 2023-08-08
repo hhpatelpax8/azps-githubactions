@@ -22,6 +22,11 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSession: true
 
+    - name: Export Azure Credentials
+      run: 
+        # Set the 'AZURE_CREDENTIALS' secret as an environment variable
+        export AZURE_CREDENTIALS='${{ secrets.AZURE_CREDENTIALS }}'
+
     - name: Run Azure PowerShell Deployment Script
       uses: azure/powershell@v1
       with:
