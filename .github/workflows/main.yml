@@ -9,30 +9,24 @@ on:
       - main
 
 jobs:
-  deploy:
-    runs-on: windows-latest
+
+  build:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install Azure PowerShell
-      run: |
-        Install-Module -Name Az -Force -AllowClobber
-
-
-    - name: Set up Azure PowerShell
+    - name: Check Out
+      uses: actions/checkout@v3
+      
+    - name: Login Azure
       uses: azure/login@v1
       with:
-        creds: |
-          ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSession: true
 
-    - name: Set Execution Policy
-      run: |
-        Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
-
-    - name: Run Azure Deployment Script
-      run: |
-        .\masterscript.ps1
+    - name: Run Azure PowerShell Deployment Script
+      uses: azure/powershell@v1
+      with:
+        inlineScript: ./masterscript.ps1
+        azPSVersion: "latest"
 
     - name: Logout Azure PowerShell
       run: |
