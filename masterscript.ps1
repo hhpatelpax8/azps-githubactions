@@ -1,16 +1,11 @@
-# Load the AZURE_CREDENTIALS secret as an environment variable
-$azCredentialsJson = $env:AZURE_CREDENTIALS
-
-# Convert the JSON string to a PowerShell object
-$azCredentials = ConvertFrom-Json $azCredentialsJson
 
 # Connect to Azure using Service Principal credentials
 Connect-AzAccount -ServicePrincipal `
-    -TenantId $azCredentials.tenantId `
-    -ApplicationId $azCredentials.clientId `
-    -CertificateThumbprint $azCredentials.clientSecret
+    -TenantId var.tenantId `
+    -ApplicationId var.clientId `
+    -CertificateThumbprint var.clientSecret
 
-    
+
 #Create Resource Group
 
 $resourceGroup="testrg2"
