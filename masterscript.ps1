@@ -1,9 +1,9 @@
 # Connect to Azure using Service Principal credentials
 
 Connect-AzAccount -ServicePrincipal `
-    -TenantId $AZURE_CREDENTIALS.tenantId `
-    -ApplicationId $AZURE_CREDENTIALS.clientId `
-    -CertificateThumbprint $AZURE_CREDENTIALS.clientSecret
+    -TenantId $TENANT_ID `
+    -ApplicationId $CLIENT_ID `
+    -CertificateThumbprint $CLIENTSECRET
 
 
 #Create Resource Group
