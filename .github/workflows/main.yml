@@ -29,8 +29,7 @@ jobs:
         azPSVersion: "latest"
         enable-AzPSSession: true
         inlineScript: ./masterscript.ps1
-        errorActionPreference: continue
-        
+                
     - name: Logout Azure PowerShell
       run: |
         az logout
