@@ -10,24 +10,29 @@ on:
 
 jobs:
 
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Check Out
-      uses: actions/checkout@v3
-      
+        
     - name: Login Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSession: true
+    
+    - name: Check Out
+      uses: actions/checkout@v3
 
     - name: Run Azure PowerShell Deployment Script
       uses: azure/powershell@v1
       with:
-        inlineScript: ./masterscript.ps1
         azPSVersion: "latest"
-
+        client-id: ${{ secrets.AZURE_CREDENTIALS }}
+        tenant-id: ${{ secrets.AZURE_CREDENTIALS }}
+        subscription-id: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
+        inlineScript: ./masterscript.ps1
+        
     - name: Logout Azure PowerShell
       run: |
         az logout
