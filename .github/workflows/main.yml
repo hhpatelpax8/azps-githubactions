@@ -32,6 +32,9 @@ jobs:
 
     - name: Run Azure Deployment Script
       run: |
+        # Authenticate with Azure
+        Connect-AzAccount
+        
         # Run the masterscript.ps1 file
         .\masterscript.ps1
 
