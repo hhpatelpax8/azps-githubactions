@@ -18,7 +18,7 @@ jobs:
       
     - name: Login Azure
       uses: azure/login@v1
-      with:
+      env:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSession: true
 
