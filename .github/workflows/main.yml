@@ -14,10 +14,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Clear PowerShell Session
+      run: |
+        Get-Module -ListAvailable | Remove-Module -Force
 
     - name: Install Azure PowerShell
       run: |
         Install-Module -Name Az -Force -AllowClobber
+        Import-Module -Name Az
  
     - name: Set up Azure PowerShell
       uses: azure/login@v1
@@ -27,10 +32,6 @@ jobs:
 
     - name: Run Azure Deployment Script
       run: |
-        # Import the Azure PowerShell module and Uninstall AzureRM
-        Import-Module -Name Az
-        Uninstall-Module -Name AzureRM -Force
-
         # Run the masterscript.ps1 file
         .\masterscript.ps1
 
