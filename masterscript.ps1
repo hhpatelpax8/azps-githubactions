@@ -1,3 +1,7 @@
+#Login
+
+Connect-AzAccount
+
 #Create Resource Group
 
 $resourceGroup="testrg2"
