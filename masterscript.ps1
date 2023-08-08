@@ -1,3 +1,5 @@
+Connect-AzAccount -ServicePrincipal $AZURE_CREDENTIALS
+
 #Create Resource Group
 
 $resourceGroup="testrg2"
