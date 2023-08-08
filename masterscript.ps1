@@ -1,11 +1,4 @@
 
-Connect-AzAccount -ServicePrincipal `
--Tenant "76e4ac64-f84d-401d-8594-3f6ca5374437" `
--ApplicationID "795531ac-a378-4d0c-a53b-7881314d1275" `
--CertificateThumbprint "K368Q~P5CVtcl7BwKJfdlZBddrDnBMMbhrYDGckq" `
--SubscriptionID "b6bc174f-3ea1-481b-8d2a-614f2f2e464b"
-
-
 #Create Resource Group
 
 $resourceGroup="testrg2"
