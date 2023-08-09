@@ -103,13 +103,21 @@ $VirtualNetwork | Set-AzVirtualNetwork
 #Create a VM
 $vmname = "testvm01"
 $vmsize = "Standard_DS2_v2"
-$adminUsername = "adminuser"
-$adminPassword = "Adminuser1234"
+
+$adminUsername = "admin"
+$adminPassword = "Password1234567$"
+[String] [ValidateNotNullOrEmpty()] $secpasswd = "Password1234567"
+[SecureString] $secpasswd = ConvertTo-SecureString -String "Password1234567" -AsPlainText -Force
+[PSCredential] $adminCreds = New-Object System.Management.Automation.PSCredential ("admin", $secpasswd)
+
+
+
 $vmconfig=New-AzVMConfig -VMName $vmname -VMSize $vmsize
 
 Set-AzVMOperatingSystem `
 -VM $vmconfig `
 -ComputerName $vmname `
+-Credential $adminCreds `
 -Windows
 
 Set-AzVMSourceImage `
@@ -123,5 +131,4 @@ $networkinterface=Get-AzNetworkInterface -Name $networkinterfacename -ResourceGr
 $vm=Add-AzVMNetworkInterface -VM $vmconfig -ID $networkinterface.Id
 Set-AzVMBootDiagnostic -Disable -VM $vm
 
-New-AzVM -ResourceGroupName $resourceGroup -Location $location -VM $vm -AdminUsername $adminUsername `
--AdminPassword $adminPassword
+New-AzVM -ResourceGroupName $resourceGroup -Location $location -VM $vm
