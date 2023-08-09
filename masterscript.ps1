@@ -104,8 +104,6 @@ $VirtualNetwork | Set-AzVirtualNetwork
 $vmname = "testvm01"
 $vmsize = "Standard_DS2_v2"
 
-$adminUsername = "admin"
-$adminPassword = "Password1234567$"
 [String] [ValidateNotNullOrEmpty()] $secpasswd = "Password1234567"
 [SecureString] $secpasswd = ConvertTo-SecureString -String "Password1234567" -AsPlainText -Force
 [PSCredential] $adminCreds = New-Object System.Management.Automation.PSCredential ("admin", $secpasswd)
